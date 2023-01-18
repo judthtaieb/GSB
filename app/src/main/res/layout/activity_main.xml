@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".controller.MenuActivity">
+
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     android:layout_margin="15dp"
+     android:layout_gravity="center">
+
+
+     <include layout="@layout/header"/>
+
+
+     <TextView
+         android:id="@+id/menu"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textColor="@color/black"
+         android:textStyle="italic"
+         android:layout_weight="1"
+         android:layout_gravity="center"
+         android:layout_marginTop="16dp"
+         android:text="MENU"
+         android:textSize="25dp" />
+
+     <Button
+        android:id="@+id/btnFraisForfait"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="clickMenu"
+        android:text="FRAIS FORFAIT" />
+
+    <Button
+        android:id="@+id/btnFraisHorsForfait"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="clickMenu"
+        android:text="FRAIS HORS FORFAIT" />
+
+    <Button
+        android:id="@+id/btnSyntheseDesFrais"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:onClick="clickMenu"
+        android:text="SYNTHESE DES FRAIS DECLARES" />
+
+    <Button
+        android:id="@+id/btnParametres"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:onClick="clickMenu"
+        android:text="PARAMETRES" />
+
+    <Button
+        android:id="@+id/btnHistoriqueEnvois"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="clickMenu"
+        android:text="HISTORIQUE DES ENVOIS" />
+
+     <Button
+         android:id="@+id/btnDeconnexion"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:layout_marginTop="20dp"
+         android:onClick="clickMenu"
+         android:text="DECONNEXION"/>
+
+
+
+
+
+
+ </LinearLayout>
+</ScrollView>

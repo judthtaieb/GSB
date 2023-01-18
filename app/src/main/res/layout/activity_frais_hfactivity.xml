@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".controller.FraisHFActivity">
+
+
+
+  <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp"
+            android:layout_gravity="center">
+
+      <include layout="@layout/header"/>
+
+
+     <TextView
+         android:id="@+id/fraisHForfait"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:layout_marginTop="16dp"
+         android:textColor="@color/black"
+         android:layout_gravity="center"
+         android:textStyle="italic"
+         android:text="FRAIS HORS FORFAIT"
+         android:textSize="25dp" />
+
+
+               <TextView
+        android:labelFor="@+id/libelle"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Libelle:"
+        android:textSize="16sp" />
+
+      <EditText
+          android:id="@+id/libelle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:ems="10" />
+
+                <TextView
+        android:labelFor="@+id/montant"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Montant:"
+        android:textSize="16sp"/>
+
+      <EditText
+          android:id="@+id/montant"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:ems="10"/>
+
+
+      <TextView
+          android:labelFor="@+id/maDate"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="20dp"
+          android:layout_weight="1"
+          android:text="Date de la dépense:"
+          android:textSize="16sp"
+          android:onClick="ShowCal"/>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:orientation="horizontal">
+
+            <EditText
+            android:id="@+id/maDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="dd-MM-yyyy"
+            android:inputType="date" />
+
+          <ImageButton
+              android:id="@+id/date"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginHorizontal="20dp"
+              android:background="@color/white"
+              android:onClick="ShowCal"
+              android:src="@drawable/logocalendrier"
+              android:text="date" />
+      </LinearLayout>
+
+
+
+     <TextView
+        android:id="@+id/justificatif"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Justificatif:"
+        android:textSize="16sp" />
+
+                <Button
+        android:id="@+id/btnAjouterFHF"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:onClick="clickAjouterFHF"
+        android:text="AJOUTER"/>
+
+
+
+
+
+
+
+
+
+
+
+
+  </LinearLayout>
+
+
+</ScrollView>
+

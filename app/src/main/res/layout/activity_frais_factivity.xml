@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    tools:context=".controller.FraisFActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="15dp"
+        android:layout_gravity="center">
+
+        <include layout="@layout/header"/>
+
+
+        <TextView
+            android:id="@+id/fraisForfait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textStyle="italic"
+            android:layout_marginTop="16dp"
+            android:text="FRAIS FORFAIT"
+            android:textSize="25dp" />
+
+
+        <TextView
+            android:labelFor="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_weight="1"
+            android:text="Type:"
+            android:textSize="16sp" />
+
+
+
+            <Spinner
+            android:id="@+id/typeForfait"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+                android:entries="@array/forfait"
+            android:hint="Selectionnez un type de forfait" />
+
+
+
+        <TextView
+            android:labelFor="@+id/quantite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="Quantité:"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/quantite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberDecimal"/>
+
+        <TextView
+            android:id="@+id/txtMontant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <TextView
+            android:labelFor="@+id/dateDepense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="Date de la dépense:"
+            android:textSize="16sp"
+            android:onClick="ShowCal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/dateDepense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="dd-MM-yyyy"
+                android:inputType="date" />
+
+            <ImageButton
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@color/white"
+                android:onClick="ShowCal"
+                android:src="@drawable/logocalendrier"
+                android:text="date" />
+        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/btnAjouter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:layout_weight="1.5"
+            android:text="AJOUTER"
+            android:onClick="clickAjouter"/>
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
