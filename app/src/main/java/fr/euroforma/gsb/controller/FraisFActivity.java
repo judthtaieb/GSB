@@ -68,26 +68,46 @@ public class FraisFActivity<editable> extends AppCompatActivity {
                 String f = typeForfait.getSelectedItem().toString();
                 int posForfait = typeForfait.getSelectedItemPosition();
                 Float m = q * Float.parseFloat(Valeurs[posForfait]);
-                if(database.insertData(typeForfait.toString(),q,mDate.toString(),m,f)){
-                    afficher("Valeur ajoutée avec succès.Montant="+m);
-                    return;
-                }
+
                 montant.setText(m.toString());
 
             }
         });
     }
 
-    public void setBtnAjouter(View v){
-        quantite.getText();
-        typeForfait.getSelectedItem();
-    }
+
    public void afficher(String msg) {
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
-    public void clickAjouter(View v){
-        afficher(quantite.getText().toString()+typeForfait.getSelectedItem().toString());
+    public void clickAjouter(View v) {
+        if (quantite.getText().toString().trim().length() == 0 || typeForfait.getSelectedItem().toString().length() == 0
+                || mDate.getText().toString().trim().length() == 0) {
+            //teste si le champ quantite est renseigné ou si le champ type n'est pas vide
+            // et qu'on a selectionne l'une des 4 possibilités et si la date est renseignée
+            afficher("Erreur!Vous n'avez pas rempli tous les champs!");
+            return;
+        } else if (mDate.getText().toString().trim().length()>10 || mDate.getText().toString().trim().length()<8) {
+            //test sur la validité du champ date
+            afficher("Erreur! Date invalide");
+
+            return;
+        } else if (Integer.parseInt(quantite.getText().toString()) < 1) { //teste si la quantite est au moins 1
+            afficher("Erreur! Quantité invalide");
+            return;
+        } else {
+            String tf1 = typeForfait.getSelectedItem().toString();
+            Integer q1 = Integer.parseInt(quantite.getText().toString());
+            String d1 = mDate.getText().toString();
+            Float m1 = Float.parseFloat(montant.getText().toString());
+
+
+            if (database.insertData(tf1, q1, d1, m1, tf1)) {
+                afficher("Valeur ajoutée avec succès.Montant=" + m1);
+                return;
+            }
+            afficher(quantite.getText().toString() + typeForfait.getSelectedItem().toString());
+        }
     }
     public void retourMenu(View view) {
         Intent retourIntent= new Intent(FraisFActivity.this, MenuActivity.class);

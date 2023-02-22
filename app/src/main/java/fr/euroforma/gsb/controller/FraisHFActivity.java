@@ -42,9 +42,32 @@ public class FraisHFActivity extends AppCompatActivity {
         database.open();
 
     }
-    public void ajouterHorsForfait(View v){
-        libelle.getText();
-        montant.getText();
+
+    public void clickAjouterHF(View v){
+
+
+        if (libelle.getText().toString().trim().length() == 0|| maDate.getText().toString().trim().length()==0) {
+            //teste si le champ quantite est renseigné ou si le champ libelle n'est pas vide et si la date est renseignée
+            afficheFHF("Erreur! Vous n'avez pas rempli tous les champs!");
+            return;
+        } else if (maDate.getText().toString().trim().length()>10 || maDate.getText().toString().trim().length()<8 ) {
+            //test sur la validité du champ date
+            afficheFHF("Erreur! Date invalide");
+            return;
+
+        } else {
+            String tf1= libelle.getText().toString();
+            String d1 = maDate.getText().toString();
+            Float m1 = Float.parseFloat(montant.getText().toString());
+            Integer q1 = 1;
+
+
+            if(database.insertData(tf1,q1,d1,m1,tf1)){
+                afficheFHF("Valeur ajoutée avec succès.Montant="+m1);
+                return;
+            }
+        }
+        afficheFHF(libelle.getText().toString()+montant.getText().toString());
     }
 
     public void afficheFHF(String msg) {

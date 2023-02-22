@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-        android:layout_gravity="center"
+    android:layout_gravity="center"
     tools:context=".controller.ParamActivity">
 
 
@@ -31,19 +31,7 @@
             android:textSize="25dp" />
 
 
-        <TextView
-            android:labelFor="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Email :"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+
         <TextView
             android:labelFor="@+id/nom"
             android:layout_width="wrap_content"
@@ -87,6 +75,20 @@
             android:layout_marginTop="10dp"/>
 
         <TextView
+            android:labelFor="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Email :"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
             android:labelFor="@+id/url"
             android:layout_width="wrap_content"
             android:layout_weight="1"
@@ -100,19 +102,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"/>
-        <TextView
-            android:labelFor="@+id/mot_de_passe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+
+        <Button
+            android:id="@+id/enregistrer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:text="Mot de passe :"
-            android:textSize="16sp" />
-        <EditText
-            android:id="@+id/mot_de_passe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+            android:text="ENREGISTRER"
+            android:onClick="clickEnregistrer"/>
+
 
 
 
