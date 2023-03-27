@@ -3,12 +3,15 @@ package fr.euroforma.gsb.controller;
 import static android.content.Context.MODE_PRIVATE;
 import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
+import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,14 +72,22 @@ public class BDDHelper extends SQLiteOpenHelper {
 
     public Cursor viewData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.query(DB_TABLE, new String[]{"rowid _id"  ,ID,LIBELLE
-                      , DATEFRAIS, DATESAISIE, MONTANT, QUANTITE},
-                null, null, null, null, null);
-       // String myQuery = "SELECT * FROM  "+DB_TABLE;
-        //Cursor cursor = db.rawQuery(myQuery,null);
-        if (cursor != null) {
-            cursor.moveToFirst();
+
+        if (inputText == null  ||  inputText.length () == 0)  {
+        Cursor cursor= db.query(DB_TABLE, new String[] {ID,
+                        LIBELLE, DATEFRAIS, DATESAISIE, MONTANT,QUANTITE},
+                null, null, null, null, null,null);
+
+
+        }else {
+             Cursor cursor =db.query(true, DB_TABLE, new String[] {ID,
+                            LIBELLE, DATEFRAIS, DATESAISIE, MONTANT,QUANTITE},
+                    DATEFRAIS + " like '%" + inputText + "%'", null,
+                    null, null, null, null,null);
         }
+        if (cursor != null) {
+        cursor.moveToFirst();}
+
         return cursor;
 
     }
@@ -103,4 +114,5 @@ public class BDDHelper extends SQLiteOpenHelper {
 
     public void deleteData(int parseInt) {
     }
+
 }

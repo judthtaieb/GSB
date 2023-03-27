@@ -36,27 +36,6 @@ public class SyntheseActivity extends AppCompatActivity {
         db.open();
         displayListView();
 
-        //ArrayList<HashMap<String, String>> fraisList = db.GetFrais();
-        //ListView lv = (ListView) findViewById(R.id.liste_frais);
-        //ListAdapter adapter = new SimpleAdapter(SyntheseActivity.this, fraisList, R.layout.details_frais, new String[]{"LIBELLE", "MONTANT", "DATEFRAIS","DATESAISIE"}, new int[]{R.id.libelleF, R.id.montantF, R.id.dateF ,R.id.dateSaisieF});
-        //mArray = new ArrayAdapter <> (SyntheseActivity.this,R.layout.details_frais, new String[]{"LIBELLE", "MONTANT", "DATEFRAIS","DATESAISIE"}, new int[]{R.id.libelleF, R.id.montantF, R.id.dateF ,R.id.dateSaisieF});
-
-        //lv.setAdapter(mArray);
-        //cursor = db.viewData();
-        //if (cursor.getCount() == 0) {
-        //    Toast.makeText(this, "Pas de données dans la base de données.", Toast.LENGTH_SHORT).show();
-       // } else {
-         //  while (cursor.moveToNext()) {
-              // String libelle = cursor.getString(cursor.getColumnIndex("LIBELLE"));
-               // String libelle = cursor.getString(0);
-
-                //String montant = cursor.getString(cursor.getColumnIndex("MONTANT"));
-                //String datefrais = cursor.getString(cursor.getColumnIndex("DATEFRAIS"));
-                //String datesaisie = cursor.getString(cursor.getColumnIndex("DATESAISIE"));
-                //DataFrais datafrais = new DataFrais(libelle, montant, datefrais, datesaisie);
-                //mArray.add(datafrais);
-            //}
-        //}
 
     }
         private void displayListView() {

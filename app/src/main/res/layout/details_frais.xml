@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="5dip" >
         <TextView
             android:id="@+id/libelleF"
@@ -14,7 +14,7 @@
             android:id="@+id/montantF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/libelleF"
+            android:layout_toRightOf="@+id/libelleF"
             android:layout_marginTop="7dp"
             android:textColor="#343434"
             android:textSize="14dp" />
@@ -22,7 +22,7 @@
             android:id="@+id/dateF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/montantF"
+            android:layout_toRightOf="@+id/montantF"
             android:textColor="#343434"
             android:textSize="14dp" />
         <TextView
@@ -35,6 +35,7 @@
             android:id="@+id/idFrais"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:textSize="17dp" />
 
 </RelativeLayout>
