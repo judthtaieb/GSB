@@ -48,7 +48,10 @@ public class ParamActivity extends AppCompatActivity {
     }
 
 
-
+    public void retourMenu(View view) {
+        Intent retourIntent= new Intent(ParamActivity.this, MenuActivity.class);
+        startActivity(retourIntent);
+    }
         
 
         void afficher(String msg) {Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();}

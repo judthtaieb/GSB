@@ -3,11 +3,18 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dip" >
+        android:padding="10dip" >
+        <TextView
+            android:id="@+id/idFrais"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp" />
         <TextView
             android:id="@+id/libelleF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/idFrais"
+            android:layout_marginLeft="10dp"
             android:textStyle="bold"
             android:textSize="17dp" />
         <TextView
@@ -15,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/libelleF"
-            android:layout_marginTop="7dp"
+            android:layout_marginLeft="10dp"
             android:textColor="#343434"
             android:textSize="14dp" />
         <TextView
@@ -23,20 +30,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/montantF"
+            android:layout_marginLeft="10dp"
             android:textColor="#343434"
             android:textSize="14dp" />
         <TextView
             android:id="@+id/dateSaisieF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/libelleF"
+            android:layout_toRightOf="@id/libelleF"
+            android:layout_marginLeft="10dp"
             android:textSize="17dp" />
-        <TextView
-            android:id="@+id/idFrais"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            android:textSize="17dp" />
 
 </RelativeLayout>
 

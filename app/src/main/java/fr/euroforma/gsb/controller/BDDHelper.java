@@ -70,8 +70,9 @@ public class BDDHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public Cursor viewData() {
+ /** public Cursor viewData() {
         SQLiteDatabase db = this.getWritableDatabase();
+
 
         if (inputText == null  ||  inputText.length () == 0)  {
         Cursor cursor= db.query(DB_TABLE, new String[] {ID,
@@ -85,12 +86,26 @@ public class BDDHelper extends SQLiteOpenHelper {
                     DATEFRAIS + " like '%" + inputText + "%'", null,
                     null, null, null, null,null);
         }
-        if (cursor != null) {
+
+      /**if (cursor != null) {
         cursor.moveToFirst();}
 
         return cursor;
 
-    }
+    }*/
+ public Cursor viewData() {
+     SQLiteDatabase db = this.getWritableDatabase();
+     Cursor cursor = db.query(DB_TABLE, new String[]{"rowid _id"  ,ID,LIBELLE
+                     , DATEFRAIS, DATESAISIE, MONTANT, QUANTITE},
+             null, null, null, null, null);
+     // String myQuery = "SELECT * FROM  "+DB_TABLE;
+     //Cursor cursor = db.rawQuery(myQuery,null);
+     if (cursor != null) {
+         cursor.moveToFirst();
+     }
+     return cursor;
+
+ }
 
     // recuperer details des frais
     public ArrayList<HashMap<String, String>> GetFrais() {
