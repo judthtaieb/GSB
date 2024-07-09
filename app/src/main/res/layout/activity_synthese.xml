@@ -4,9 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <include layout="@layout/header"/>
+
     <TextView android:layout_width="fill_parent"
         android:layout_height="wrap_content" android:padding="10dp"
-        android:text="Mes synthèses de frais" android:textSize="20sp" />
+        android:text="Mes synthèses de frais" android:textSize="20sp"
+        android:layout_marginTop="16dp" />
+
+    <EditText android:id="@+id/myFilter" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:ems="10"
+        android:hint="entrez une date">
+
+        <requestFocus />
+    </EditText>
 
 
 
@@ -16,4 +26,28 @@
         android:layout_height="wrap_content"
         android:dividerHeight="1dp" />
 
+
+<Button
+    android:id="@+id/btnAfficher"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@color/design_default_color_primary"
+    android:text="Afficher montant total frais"
+    android:layout_marginTop="15dp"
+    android:onClick="clickAfficherMontant"/>
+
+    <TextView
+        android:id="@+id/total"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Montant total frais:"
+        android:padding="20dp"/>
+    <TextView
+        android:id="@+id/totalMontant"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/total"
+        android:layout_marginLeft="20dp" />
 </LinearLayout>

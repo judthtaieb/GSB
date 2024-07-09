@@ -48,8 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_weight="1"
-                android:entries="@array/forfait"
+            android:layout_weight="1" android:entries="@array/forfait"
             android:hint="Selectionnez un type de forfait" />
 
 
@@ -76,6 +75,9 @@
             android:layout_height="wrap_content"
             android:text="" />
 
+
+
+
         <TextView
             android:labelFor="@+id/dateDepense"
             android:layout_width="wrap_content"
@@ -85,6 +87,8 @@
             android:text="Date de la dépense:"
             android:textSize="16sp"
             android:onClick="ShowCal"/>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -14,12 +14,14 @@ import android.widget.Toast;
 import java.util.Random;
 
 import fr.euroforma.gsb.R;
+import android.os.Process;
 
 public class AuthentificationActivity extends AppCompatActivity {
     EditText codeVisiteur;
     LinearLayout codeVerif;
     EditText mEmail;
     EditText mCodeVerif;
+
     Button btnEnvoyer;
     Button btnValider;
     Random r = new Random();
@@ -29,6 +31,8 @@ public class AuthentificationActivity extends AppCompatActivity {
     public static final String SHARED_PREF_USER_INFO = "SHARED_PREF_USER_INFO";
     public static final String CODE_VISITEUR = "CODE_VISITEUR";
     private static final String EMAIL = "EMAIL";
+    private static final String ECHEC = "ECHEC";
+
 
 
 
@@ -43,8 +47,11 @@ public class AuthentificationActivity extends AppCompatActivity {
         codeVerif = findViewById(R.id.verifiaction_layout);
         mCodeVerif = findViewById(R.id.codeVerif);
         mEmail = findViewById(R.id.mEmail);
+
         btnValider = findViewById(R.id.btnValider);
         btnEnvoyer = findViewById(R.id.btnEnvoyer);
+
+
 
 
     }
@@ -66,25 +73,37 @@ public class AuthentificationActivity extends AppCompatActivity {
 
     public void clickVerification(View view) {
         String s1 = codeAleatoire.toString();
-        if (s1.equals(mCodeVerif.getText().toString())) {
-            afficheMessageVerif("le code entré est valide");
-            SharedPreferences preferences = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE);
-            getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
-                    .edit()
-                    .putString(CODE_VISITEUR,codeVisiteur .getText().toString())
-                    .putString(EMAIL, mEmail.getText().toString())
-                    .apply();
-            String CodeVisiteurEnregistre = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(CODE_VISITEUR, null);
-            String EmailEnregistre = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(EMAIL, null);
-            afficheMessageVerif("Code  visiteur enregistré: " + CodeVisiteurEnregistre.toString());
-            afficheMessageVerif("Email enregistré: " + EmailEnregistre.toString());
-
-            Intent menuIntent= new Intent(AuthentificationActivity.this,MenuActivity.class);
-            startActivity(menuIntent);
+        String echec = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(ECHEC, "0");
+        int nbechec=  Integer.parseInt(echec);
+        //au bout de 3 echecs (on a commence a 0)
+        if (nbechec >= 2)
+        {    afficheMessageVerif(" nombre d essais  maximum atteint.authentification bloquée.  ");
+            btnEnvoyer.setEnabled(false);
         }
+            if (s1.equals(mCodeVerif.getText().toString())) {
+                afficheMessageVerif("le code entré est valide");
+                SharedPreferences preferences = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE);
+                getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
+                        .edit()
+                        .putString(CODE_VISITEUR, codeVisiteur.getText().toString())
+                        .putString(EMAIL, mEmail.getText().toString())
+                        .apply();
+                String CodeVisiteurEnregistre = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(CODE_VISITEUR, null);
+                String EmailEnregistre = getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE).getString(EMAIL, null);
+                afficheMessageVerif("Code  visiteur enregistré: " + CodeVisiteurEnregistre.toString());
+                afficheMessageVerif("Email enregistré: " + EmailEnregistre.toString());
 
-        else {
-            afficheMessageVerif("le code entré n'est  pas valide");}
+                Intent menuIntent = new Intent(AuthentificationActivity.this, MenuActivity.class);
+                startActivity(menuIntent);
+            } else {
+                afficheMessageVerif("le code entré n'est  pas valide");
+                nbechec++;
+                getSharedPreferences(SHARED_PREF_USER_INFO, MODE_PRIVATE)
+                        .edit()
+                        .putString(ECHEC,String.valueOf(nbechec))
+                        .apply();
+
+            }
 
 
 

@@ -1,22 +1,21 @@
 package fr.euroforma.gsb.controller;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
 import fr.euroforma.gsb.R;
 
 public class FraisHFActivity extends AppCompatActivity {
+
     EditText libelle;
     EditText montant;
     EditText maDate;
@@ -56,6 +55,7 @@ public class FraisHFActivity extends AppCompatActivity {
             return;
 
         } else {
+
             String tf1= libelle.getText().toString();
             String d1 = maDate.getText().toString();
             Float m1 = Float.parseFloat(montant.getText().toString());

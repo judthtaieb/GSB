@@ -1,7 +1,5 @@
 package fr.euroforma.gsb.controller;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
@@ -39,6 +39,7 @@ public class FraisFActivity<editable> extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frais_factivity);
+
 
         quantite = findViewById(R.id.quantite);
         typeForfait = findViewById(R.id.typeForfait);
@@ -96,13 +97,14 @@ public class FraisFActivity<editable> extends AppCompatActivity {
             afficher("Erreur! Quantité invalide");
             return;
         } else {
+
             String tf1 = typeForfait.getSelectedItem().toString();
             Integer q1 = Integer.parseInt(quantite.getText().toString());
             String d1 = mDate.getText().toString();
             Float m1 = Float.parseFloat(montant.getText().toString());
 
 
-            if (database.insertData(tf1, q1, d1, m1, tf1)) {
+            if (database. insertData(tf1, q1, d1, m1, tf1)) {
                 afficher("Valeur ajoutée avec succès.Montant=" + m1);
                 return;
             }

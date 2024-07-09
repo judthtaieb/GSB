@@ -1,22 +1,17 @@
 package fr.euroforma.gsb.controller;
 
-import static android.content.Context.MODE_PRIVATE;
-import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
-
-import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BDDHelper extends SQLiteOpenHelper {
+
     public static  final  String DB_NAME ="GSB.db";
     public static final  String DB_TABLE= "FRAIS";
     //definition des champs de la table
@@ -28,8 +23,11 @@ public class BDDHelper extends SQLiteOpenHelper {
     public static final  String MONTANT="MONTANT";//montant de la depense
     public static final  String  DATESAISIE ="DATESAISIE";//date ou la depense a ete saisie sur l application
 
+    SQLiteDatabase db;
 
-    public static  final String CREATE = "Create table FRAIS (ID INTEGER PRIMARY KEY AUTOINCREMENT ,TYPEFORFAIT TEXT,LIBELLE TEXT,QUANTITE INTEGER,DATEFRAIS TEXT,MONTANT INTEGER,DATESAISIE DATETIME_DEFAULT_CURRENT_TIMESTAMP)";
+
+
+    public static  final String CREATE = "Create table FRAIS (ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEFORFAIT TEXT,LIBELLE TEXT,QUANTITE INTEGER,DATEFRAIS TEXT,MONTANT REAL,DATESAISIE DATETIME_DEFAULT_CURRENT_TIMESTAMP)";
 
     public BDDHelper(Context context){
         super(context,DB_NAME,null,1);//permet d'accéder aux membres de la classe mere BDDHelper
@@ -41,7 +39,7 @@ public class BDDHelper extends SQLiteOpenHelper {
     @Override
     //creation de la BDD
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(CREATE  );
+        sqLiteDatabase.execSQL(CREATE);
 
     }
 
@@ -51,13 +49,13 @@ public class BDDHelper extends SQLiteOpenHelper {
 
     }
     public  BDDHelper open()throws SQLException{
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         return this;
     }
 
-    public boolean insertData(String type, Integer quantite, String date, Float montant, String libelle) {
+    public boolean  insertData(String type, Integer quantite, String date, Float montant, String libelle) {
         //on cree une variable de type sqLitedatabase pr pouvoir y acceder
-        SQLiteDatabase db = this.getWritableDatabase();
+        db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(TYPEFORFAIT, type);
         contentValues.put(QUANTITE, quantite);
@@ -70,34 +68,53 @@ public class BDDHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
- /** public Cursor viewData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-
-        if (inputText == null  ||  inputText.length () == 0)  {
-        Cursor cursor= db.query(DB_TABLE, new String[] {ID,
-                        LIBELLE, DATEFRAIS, DATESAISIE, MONTANT,QUANTITE},
-                null, null, null, null, null,null);
-
-
-        }else {
-             Cursor cursor =db.query(true, DB_TABLE, new String[] {ID,
-                            LIBELLE, DATEFRAIS, DATESAISIE, MONTANT,QUANTITE},
+    public Cursor ViewData(String inputText) throws SQLException {
+        db = this.getReadableDatabase();
+        Cursor mycursor = null;
+        if (inputText == null || inputText.length() == 0) {
+            mycursor = db.query(DB_TABLE, new String[]{"rowid _id", LIBELLE,
+                            ID, DATEFRAIS,DATESAISIE ,MONTANT, QUANTITE},
+                    null, null, null, null, null);
+        }else{
+            mycursor = db.query(DB_TABLE, new String[]{"rowid _id",LIBELLE,
+                            ID, DATEFRAIS,DATESAISIE,MONTANT, QUANTITE},
                     DATEFRAIS + " like '%" + inputText + "%'", null,
-                    null, null, null, null,null);
+                    null, null, null, null);
         }
+        if (mycursor != null) {
+            mycursor.moveToFirst();
+        }
+        return mycursor;
 
-      /**if (cursor != null) {
-        cursor.moveToFirst();}
-
-        return cursor;
-
-    }*/
- public Cursor viewData() {
+    }
+ // recuperer details des frais
+ public ArrayList<HashMap<String, String>> GetFrais() {
      SQLiteDatabase db = this.getWritableDatabase();
-     Cursor cursor = db.query(DB_TABLE, new String[]{"rowid _id"  ,ID,LIBELLE
+     ArrayList<HashMap<String, String>> fraisList = new ArrayList<>();
+     String query = "SELECT LIBELLE, MONTANT ,DATEFRAIS , DATESAISIE FROM FRAIS" ;
+     Cursor cursor = db.rawQuery(query, null);
+     while (cursor.moveToNext()){
+         HashMap<String, String> frais = new HashMap<>();
+
+         frais.put("LIBELLE", cursor.getString(cursor.getColumnIndex(LIBELLE)));
+         frais.put("MONTANT", cursor.getString(cursor.getColumnIndex(MONTANT)));
+         frais.put("DATEFRAIS", cursor.getString(cursor.getColumnIndex(DATEFRAIS)));
+         frais.put("DATESAISIE", cursor.getString(cursor.getColumnIndex(DATESAISIE)));
+
+
+
+
+
+         fraisList.add(frais);
+     }
+     return  fraisList;
+ }
+
+/**public Cursor viewData() {
+      db = this.getWritableDatabase();
+     Cursor cursor = db.query(DB_TABLE, new String[]{"rowid _id" ,ID,CP,VILLE,LIBELLE
                      , DATEFRAIS, DATESAISIE, MONTANT, QUANTITE},
-             null, null, null, null, null);
+             null, null, null, null, null,null,null);
      // String myQuery = "SELECT * FROM  "+DB_TABLE;
      //Cursor cursor = db.rawQuery(myQuery,null);
      if (cursor != null) {
@@ -106,28 +123,54 @@ public class BDDHelper extends SQLiteOpenHelper {
      return cursor;
 
  }
+**/
 
-    // recuperer details des frais
-    public ArrayList<HashMap<String, String>> GetFrais() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<HashMap<String, String>> fraisList = new ArrayList<>();
-        String query = "SELECT LIBELLE, MONTANT ,DATEFRAIS , DATESAISIE  FROM FRAIS " ;
-        Cursor cursor = db.rawQuery(query, null);
-        while (cursor.moveToNext()){
-        HashMap<String, String> frais = new HashMap<>();
-        frais.put("LIBELLE", cursor.getString(cursor.getColumnIndex(LIBELLE)));
-        frais.put("MONTANT", cursor.getString(cursor.getColumnIndex(MONTANT)));
-        frais.put("DATEFRAIS", cursor.getString(cursor.getColumnIndex(DATEFRAIS)));
-        frais.put("DATESAISIE", cursor.getString(cursor.getColumnIndex(DATESAISIE)));
-
-
-        fraisList.add(frais);
-        }
-        return  fraisList;
-    }
 
 
     public void deleteData(int parseInt) {
     }
 
+    public int getTotalFrais() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String countQuery = "SELECT COUNT(*) as compte FROM " + DB_TABLE;
+        Cursor cursor= db.rawQuery(countQuery, null);
+        int compte=0;
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            compte = cursor.getInt(0);
+            cursor.close();
+        }
+
+        return compte;
+    }
+    public float getMontantTotalFrais() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String countQuery = "SELECT SUM (MONTANT) as totalmontant FROM " + DB_TABLE;
+        Cursor cursor = db.rawQuery(countQuery, null);
+        float totalM=0;
+
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            totalM = cursor.getFloat(0);
+            cursor.close();
+        }
+
+
+        return totalM;
+    }
+    public boolean verifierFrais(String inputDate , String inputType) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String typeForfaitBD = "SELECT * FROM " + DB_TABLE + " GROUP BY " + TYPEFORFAIT + "='" + inputType +  "' HAVING " + DATEFRAIS + "='" + inputDate + "'";
+
+        Cursor cursor = db.rawQuery(typeForfaitBD , null);
+
+
+
+
+        return cursor != null;}
 }
+
+
+

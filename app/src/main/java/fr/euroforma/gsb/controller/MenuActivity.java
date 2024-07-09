@@ -1,18 +1,15 @@
 package fr.euroforma.gsb.controller;
 
-import static fr.euroforma.gsb.controller.AuthentificationActivity.CODE_VISITEUR;
 import static fr.euroforma.gsb.controller.AuthentificationActivity.SHARED_PREF_USER_INFO;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import fr.euroforma.gsb.R;
 
@@ -58,10 +55,7 @@ public class MenuActivity extends AppCompatActivity {
                 afficheMenu("mes informations personnelles");
                 mc= ParamActivity.class;
                 break;
-            case  R.id.btnHistoriqueEnvois:
-                afficheMenu("mes envois");
-                mc=HistoriqueActivity.class;
-                break;
+
             case  R.id.btnDeconnexion:
                 afficheMenu("mon authentification");
                 mc=AuthentificationActivity.class;
